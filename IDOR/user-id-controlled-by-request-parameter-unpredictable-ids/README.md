@@ -1,9 +1,9 @@
 # User ID controlled by request parameter, with unpredictable user IDs
 
-**Plataforma:** [PortSwigger Web Security Academy](https://portswigger.net/web-security/access-control/lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids)
-**Nível:** Apprentice
-**Tema:** controle de acesso (IDOR)
-**Ferramentas:** só o navegador
+**Plataforma:** [PortSwigger Web Security Academy](https://portswigger.net/web-security/access-control/lab-user-id-controlled-by-request-parameter-with-unpredictable-user-ids)  
+**Nível:** Apprentice  
+**Tema:** controle de acesso (IDOR)  
+**Ferramentas:** só o navegador  
 
 ## O objetivo
 

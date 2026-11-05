@@ -1,9 +1,9 @@
 # Insecure direct object references
 
-**Plataforma:** [PortSwigger Web Security Academy](https://portswigger.net/web-security/access-control/lab-insecure-direct-object-references)
-**Nível:** Apprentice
-**Tema:** controle de acesso (IDOR)
-**Ferramentas:** Burp Suite Community e o navegador do próprio Burp
+**Plataforma:** [PortSwigger Web Security Academy](https://portswigger.net/web-security/access-control/lab-insecure-direct-object-references)  
+**Nível:** Apprentice  
+**Tema:** controle de acesso (IDOR)  
+**Ferramentas:** Burp Suite Community e o navegador do próprio Burp  
 
 ## O objetivo
 
