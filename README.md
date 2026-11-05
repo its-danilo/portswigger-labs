@@ -4,7 +4,7 @@ Meus writeups dos labs da [Web Security Academy](https://portswigger.net/web-sec
 
 | Categoria | Writeups |
 |---|---|
-| [IDOR](IDOR/) | 1 |
+| [IDOR](IDOR/) | 3 |
 | [SQLi](SQLi/) | 0 |
 | [XSS](XSS/) | 0 |
 | [CSRF](CSRF/) | 0 |
