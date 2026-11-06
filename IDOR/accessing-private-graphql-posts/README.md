@@ -2,7 +2,7 @@
 
 **Plataforma:** [PortSwigger Web Security Academy](https://portswigger.net/web-security/graphql/lab-graphql-reading-private-posts)  
 **Nível:** Apprentice  
-**Tema:** GraphQL (introspecção + post escondido acessível pelo id)  
+**Tema:** controle de acesso (IDOR) numa API GraphQL + introspecção  
 **Ferramentas:** Burp Suite (Proxy e Repeater)  
 
 ## O objetivo
@@ -89,4 +89,4 @@ E a introspecção ligada foi o que me deu o mapa. Sem ela eu teria que adivinha
 
 ## O que eu aprendi
 
-Um buraco na sequência de ids já é uma pista. Se tem 1, 2, 4 e 5, vale a pena testar o 3. No GraphQL, o primeiro passo é rodar a introspecção e ler o esquema com calma, porque ali aparecem campos que o site nunca mostra. E de novo a mesma lição dos labs de IDOR: esconder algo na tela não é a mesma coisa que proteger no servidor.
+Um buraco na sequência de ids já é uma pista. Se tem 1, 2, 4 e 5, vale a pena testar o 3. No GraphQL, o primeiro passo é rodar a introspecção e ler o esquema com calma, porque ali aparecem campos que o site nunca mostra. E de novo a mesma lição dos outros labs de IDOR: esconder algo na tela não é a mesma coisa que proteger no servidor.

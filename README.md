@@ -4,7 +4,7 @@ Meus writeups dos labs da [Web Security Academy](https://portswigger.net/web-sec
 
 | Categoria | Writeups |
 |---|---|
-| [IDOR](IDOR/) | 5 |
+| [IDOR](IDOR/) | 6 |
 | [SQLi](SQLi/) | 0 |
 | [XSS](XSS/) | 0 |
 | [CSRF](CSRF/) | 0 |
@@ -16,6 +16,5 @@ Meus writeups dos labs da [Web Security Academy](https://portswigger.net/web-sec
 | [Authentication](Authentication/) | 0 |
 | [File-Upload](File-Upload/) | 0 |
 | [JWT](JWT/) | 0 |
-| [GraphQL](GraphQL/) | 1 |
 
 Nos prints, cookies de sessão e senhas dos labs aparecem ocultados.
