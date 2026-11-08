@@ -2,4 +2,6 @@
 
 Falhas de autenticação.
 
-Ainda sem writeups.
+| Lab | Nível |
+|---|---|
+| [Authentication bypass via flawed state machine](authentication-bypass-via-flawed-state-machine/) | Practitioner |

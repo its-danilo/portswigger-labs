@@ -13,7 +13,7 @@ Meus writeups dos labs da [Web Security Academy](https://portswigger.net/web-sec
 | [SSTI](SSTI/) | 0 |
 | [Path-Traversal](Path-Traversal/) | 0 |
 | [Command-Injection](Command-Injection/) | 0 |
-| [Authentication](Authentication/) | 0 |
+| [Authentication](Authentication/) | 1 |
 | [File-Upload](File-Upload/) | 0 |
 | [JWT](JWT/) | 0 |
 
