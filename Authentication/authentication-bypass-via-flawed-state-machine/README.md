@@ -9,53 +9,75 @@
 
 O site tem um painel de administração em `/admin` e o objetivo é deletar o usuário `carlos` por lá. Eu tenho uma conta normal (`wiener:peter`), mas o painel só abre para administrador.
 
-Antes de começar rodei um gobuster para confirmar que o `/admin` existia de verdade. Ele respondeu `401`, ou seja, o caminho existe mas eu não tenho acesso com a conta que tenho. Esse 401 já foi uma pista. Se o caminho existe e só está trancado, a pergunta vira "como eu chego nesse estado de administrador sem ter a senha de um".
-
 A parte mais importante desse lab para mim não foi o passo a passo e sim o raciocínio. Eu não escalei privilégio. Eu só impedi o site de me rebaixar.
 
 ## Passo a passo
 
-### 1. Reparar que eu já tenho um cookie de sessão antes de logar
+### 1. Descobrir que o /admin existe com o gobuster
+
+Antes de atacar eu quis confirmar que o `/admin` existia de verdade. Usei o gobuster para testar vários nomes de caminho na raiz do site e ver quais respondem.
+
+```
+gobuster dir -u https://LAB.web-security-academy.net/ -w /usr/share/dirb/wordlists/common.txt --no-error -e
+```
+
+As flags que usei:
+
+- `dir` é o modo de descoberta de diretórios e arquivos.
+- `-u` é a URL alvo.
+- `-w` é a wordlist, uma lista de nomes comuns de caminho (usei a `common.txt` do dirb).
+- `-e` mostra a URL completa de cada resultado, em vez de só o nome.
+- `--no-error` esconde as linhas de erro e deixa a saída limpa.
+
+Uma observação prática. Na primeira vez o servidor do lab ficou cortando as conexões ("connection reset by peer") porque o gobuster bate com 10 threads ao mesmo tempo e isso estoura o limite de taxa. Baixar para `-t 5` resolve.
+
+O resultado importante foi este:
+
+![Saída do gobuster mostrando /admin com status 401](img/01-gobuster-admin.png)
+
+O `/admin` respondeu `401`. Esse status quer dizer "não autorizado". Ou seja, o caminho existe, só está trancado para quem não é administrador. Isso é uma boa notícia por dois motivos. Primeiro porque confirma que o `/admin` existe de verdade (se não existisse viria `404`, que é "não encontrado"). Segundo porque mostra que existe uma barreira de autorização ali, que é exatamente o que eu vou tentar burlar. A pergunta vira "como eu chego no estado de administrador sem ter a senha de um".
+
+### 2. Reparar que eu já tenho um cookie de sessão antes de logar
 
 Antes de digitar usuário e senha, abri o DevTools na aba Application e vi que já existia um cookie `session`. Isso me chamou atenção. O site já guarda um estado meu antes de eu me autenticar. Sempre que um fluxo tem várias etapas e já me entrega um estado assim cedo, vale desconfiar e perguntar em que estado eu estou em cada ponto do caminho.
 
-![Cookie de sessão presente antes mesmo de fazer login](img/01-cookie-antes-do-login.png)
+![Cookie de sessão presente antes mesmo de fazer login](img/02-cookie-antes-do-login.png)
 
-### 2. Ligar o Intercept e começar o login
+### 3. Ligar o Intercept e começar o login
 
 Liguei o proxy do Burp, deixei o Intercept ligado e preenchi o login com `wiener:peter`. A ideia aqui é ver cada requisição do processo de login uma por uma, porque é no meio dessa sequência que mora a falha.
 
-![Intercept ligado no Burp e o login preenchido](img/02-intercept-e-login.png)
+![Intercept ligado no Burp e o login preenchido](img/03-intercept-e-login.png)
 
-### 3. Achar o GET /role-selector e dropar essa requisição
+### 4. Achar o GET /role-selector e dropar essa requisição
 
 Dei `Forward` no `POST /login` normal. A requisição seguinte foi um `GET /role-selector`. Essa é a etapa em que o site define o meu papel (usuário comum ou content author). Em vez de deixar ela passar, cliquei em `Drop`. Com isso essa etapa de definir papel nunca acontece.
 
-![GET /role-selector na lista do Intercept e o botão Drop](img/03-get-role-selector.png)
+![GET /role-selector na lista do Intercept e o botão Drop](img/04-get-role-selector.png)
 
-### 4. Confirmar que a requisição foi dropada
+### 5. Confirmar que a requisição foi dropada
 
 O Burp mostrou a mensagem "Request was dropped by user". Confirmado. O servidor nunca recebeu a etapa de seleção de papel, então minha sessão ficou parada no estado que vem logo depois do login.
 
-![Mensagem do Burp confirmando que o request foi dropado](img/04-request-dropado.png)
+![Mensagem do Burp confirmando que o request foi dropado](img/05-request-dropado.png)
 
-### 5. Trocar a URL para /admin
+### 6. Trocar a URL para /admin
 
 Com a sessão parada nesse estado, troquei a URL na barra do navegador direto para `/admin`. Aquele mesmo caminho que antes dava 401.
 
-![URL alterada para /admin e a requisição GET /admin](img/05-url-admin.png)
+![URL alterada para /admin e a requisição GET /admin](img/06-url-admin.png)
 
-### 6. Cair no painel admin e deletar o carlos
+### 7. Cair no painel admin e deletar o carlos
 
 Desliguei o Intercept e o painel de administração abriu. Apareceu a lista de usuários com `wiener` e `carlos`. Cliquei em "Delete" no carlos.
 
-![Painel de administração aberto com a opção de deletar o carlos](img/06-painel-admin.png)
+![Painel de administração aberto com a opção de deletar o carlos](img/07-painel-admin.png)
 
-### 7. Lab resolvido
+### 8. Lab resolvido
 
 A mensagem "User deleted successfully" apareceu e o lab mudou para **Solved**.
 
-![Lab marcado como Solved](img/07-resolvido.png)
+![Lab marcado como Solved](img/08-resolvido.png)
 
 ## Por que funcionou
 
