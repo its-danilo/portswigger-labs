@@ -43,7 +43,7 @@ O site divide o login em duas etapas. A primeira confere a senha e a segunda con
 
 Quando eu vou direto para `/my-account`, essa página só confere se a sessão está logada. Ela não pergunta se o segundo fator foi verificado. Na prática a conta estava protegida só pela senha, e a senha da vítima eu já tinha.
 
-É parecido com o lab da [máquina de estados](../authentication-bypass-via-flawed-state-machine/). De novo o site confia que o usuário vai seguir as etapas na ordem certa, em vez de conferir no servidor em que ponto do fluxo a sessão está.
+É parecido com o lab da [máquina de estados](../../Business-Logic/authentication-bypass-via-flawed-state-machine/). De novo o site confia que o usuário vai seguir as etapas na ordem certa, em vez de conferir no servidor em que ponto do fluxo a sessão está.
 
 ## Como corrigir
 

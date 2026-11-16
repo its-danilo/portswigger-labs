@@ -9,7 +9,7 @@
 
 O lab é uma loja online. Eu tenho uma conta normal (`wiener:peter`) com um pouco menos de 100 dólares de crédito, e o objetivo é comprar a "Lightweight l33t Leather Jacket", que custa $1337. Ou seja, comprar algo que eu não tenho dinheiro para pagar.
 
-Assim como no lab da [máquina de estados](../../Authentication/authentication-bypass-via-flawed-state-machine/), o segredo aqui é entender o fluxo antes de atacar. Primeiro eu vi como é uma compra que dá certo, e só depois tentei a que dá errado.
+Assim como no lab da [máquina de estados](../authentication-bypass-via-flawed-state-machine/), o segredo aqui é entender o fluxo antes de atacar. Primeiro eu vi como é uma compra que dá certo, e só depois tentei a que dá errado.
 
 ## Passo a passo
 
@@ -92,4 +92,4 @@ O `order-confirmed=true` na URL deixa isso ainda mais claro. A decisão de que o
 
 O jeito de achar essa falha foi fazer primeiro a compra que dá certo e anotar cada requisição do caminho. Com o caminho feliz mapeado, ficou fácil ver qual etapa fazia a validação e qual só concluía o pedido. Daí a pergunta é sempre a mesma: e se eu for direto para a etapa final?
 
-É a mesma ideia de dois labs que fiz em autenticação, o do [2FA simple bypass](../../Authentication/2fa-simple-bypass/) e o da máquina de estados. Nos três, o site espera que o usuário siga as etapas na ordem e não confere no servidor se isso aconteceu. No 2FA foi pular o código, na máquina de estados foi dropar a seleção de papel, e aqui foi pular a validação do saldo. O OWASP trata desse tipo de teste na parte de lógica de negócio, em burlar fluxos de trabalho (WSTG-BUSL).
+É a mesma ideia do lab da máquina de estados, aqui da mesma pasta, e do [2FA simple bypass](../../Authentication/2fa-simple-bypass/), que fiz em autenticação. Nos três, o site espera que o usuário siga as etapas na ordem e não confere no servidor se isso aconteceu. No 2FA foi pular o código, na máquina de estados foi dropar a seleção de papel, e aqui foi pular a validação do saldo. O OWASP trata desse tipo de teste na parte de lógica de negócio, em burlar fluxos de trabalho (WSTG-BUSL).
