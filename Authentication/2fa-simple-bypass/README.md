@@ -25,7 +25,7 @@ O site me mandou para `/login2`, que é a segunda etapa. Ela pede o código de 4
 
 ### 3. Pular a etapa do código trocando a URL
 
-Em vez de tentar adivinhar o código, me perguntei o seguinte. Depois que eu passei pela senha, o site já me considera logado ou não? Se o login é dividido em duas etapas, pode ser que a primeira já crie a sessão e a segunda seja só uma tela no meio do caminho.
+Em vez de tentar adivinhar o código, a pergunta que vale fazer é: depois que a senha é aceita, o site já considera a sessão logada? Se o login é dividido em duas etapas, pode ser que a primeira já crie a sessão e a segunda seja só uma tela no meio do caminho.
 
 Para testar, troquei a URL na barra do navegador de `/login2` para `/my-account`, que é a página para onde o fluxo normal leva depois do código.
 
@@ -53,4 +53,4 @@ Quando eu vou direto para `/my-account`, essa página só confere se a sessão e
 
 ## O que eu aprendi
 
-2FA só protege se o servidor realmente exigir a segunda etapa. Quando um login tem várias telas, a primeira coisa a testar é pular uma delas e ir direto para onde o fluxo termina. Foi o lab mais rápido até agora, e é justamente por isso que vale lembrar dele. Às vezes a falha não precisa de nenhuma ferramenta, só de trocar a URL e ver o que o site faz.
+2FA só protege se o servidor realmente exigir a segunda etapa. Quando um login tem várias telas, a primeira coisa a testar é pular uma delas e ir direto para onde o fluxo termina. E nem sempre é preciso ferramenta. Aqui bastou trocar a URL e observar o que o site faz.

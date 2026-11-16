@@ -9,7 +9,7 @@
 
 O lab é uma loja online. Eu tenho uma conta normal (`wiener:peter`) com um pouco menos de 100 dólares de crédito, e o objetivo é comprar a "Lightweight l33t Leather Jacket", que custa $1337. Ou seja, comprar algo que eu não tenho dinheiro para pagar.
 
-Assim como no lab da [máquina de estados](../authentication-bypass-via-flawed-state-machine/), o segredo aqui é entender o fluxo antes de atacar. Primeiro eu vi como é uma compra que dá certo, e só depois tentei a que dá errado.
+Assim como no lab da [máquina de estados](../authentication-bypass-via-flawed-state-machine/), o ponto principal aqui é entender o fluxo antes de atacar. Primeiro mapeei uma compra que dá certo, e só depois tentei a que deveria dar errado.
 
 ## Passo a passo
 
@@ -47,7 +47,7 @@ Deixei passar e o pedido foi concluído com "Your order is on its way!". O créd
 
 ### 6. Colocar a jaqueta no carrinho
 
-Agora sim coloquei a jaqueta de $1337 no carrinho. O crédito continua em $97.54, muito longe do preço.
+Com o fluxo mapeado, coloquei a jaqueta de $1337 no carrinho. O crédito continua em $97.54, muito longe do preço.
 
 ![Carrinho com a jaqueta de $1337 e crédito de $97.54](img/06-carrinho-jaqueta.png)
 
@@ -59,7 +59,7 @@ Com o Intercept ainda ligado, cliquei em "Place order" e dei `Forward` no `POST 
 
 ### 8. Trocar a requisição pela de confirmação
 
-Aqui entra o que eu aprendi na compra que deu certo. Em vez de deixar o `GET /cart?err=INSUFFICIENT_FUNDS` passar, editei a primeira linha da requisição no próprio Intercept e coloquei no lugar a requisição de confirmação:
+Aqui entra o fluxo mapeado na compra que deu certo. Em vez de deixar o `GET /cart?err=INSUFFICIENT_FUNDS` passar, editei a primeira linha da requisição no próprio Intercept e coloquei no lugar a requisição de confirmação:
 
 ```
 GET /cart/order-confirmation?order-confirmed=true HTTP/2
